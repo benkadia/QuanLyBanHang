@@ -1,0 +1,2 @@
++ tải về db và vào mysql tạo 1 db với tên tương tự và kiểu utf8_unicode_ci. Sau đó export ra
++ Tất cả user đều có mật khẩu là 123456
