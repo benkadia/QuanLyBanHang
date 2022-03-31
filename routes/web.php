@@ -84,9 +84,11 @@ Route::group(['prefix'=>'admin'],function(){
     // Nếu chưa đăng nhập thì không được sử dụng chức năng ở dưới
     Route::group(['middleware'=>['admin.auth','admin.access']],function(){
         Route::get('/logout',[AuthController::class,'logout'])->name('admin.logout');
+        // Profile
         Route::get('/profile',[AuthController::class,'profile'])->name('admin.profile');
         Route::get('/profile-setting',[AuthController::class,'profilesetting'])->name('admin.profilesetting');
         Route::put('/profile-setting',[AuthController::class,'profilesettingPut'])->name('admin.profilesettingput');
+        // Change-PassWord
         Route::get('/change-password',[AuthController::class,'changePass'])->name('admin.changepass');
         Route::put('/change-password',[AuthController::class,'changePassPut'])->name('admin.changepassput');
         Route::get('/',[AuthController::class,'home'])->name('admin.home');

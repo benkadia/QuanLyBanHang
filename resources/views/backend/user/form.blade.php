@@ -37,7 +37,7 @@
                             <div class="row">
                                 <div class="form-group col-md-12">
                                     <label class="form-control-label" for="inputBasicFirstName">Tên Đăng Nhập</label>
-                                    <input required type="text" class="form-control @error('name') is-invalid @enderror" id="inputBasicFirstName" name="username" value="{{$item->username??old('username')}}" />
+                                    <input required type="text" class="form-control @error('username') is-invalid @enderror" id="inputBasicFirstName" name="username" value="{{$item->username??old('username')}}" />
                                     @error('username')
                                     <div class="invalid-feedback">
                                         {{$message}}

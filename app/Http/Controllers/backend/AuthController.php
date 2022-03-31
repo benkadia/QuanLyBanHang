@@ -215,4 +215,37 @@ class AuthController extends Controller
         ]);
         return redirect()->back()->with(['type'=>'success','msg'=>'Sửa thành công','title'=>'Sửa profile']);
     }
+    public function changePass()
+    {
+        $user = User::model();
+        return view('backend.user.change_password',['user'=>$user]);
+    }
+    public function changePassPut(Request $request)
+    {
+
+        if (!(Hash::check($request->get('current_password'), auth('admin')->user()->password)))
+            // The passwords matches
+            return redirect()->back()->with(["error" =>"Mật khẩu hiện tại không đúng. Vui lòng thử lại."]);
+        if($request->get('current_password') == $request->get('new_password'))
+            return redirect()->back()->with(["error" =>"Mật khẩu mới không được giống với mật khẩu hiện tại"]);
+         $request->validate([
+            'new_password' => ['required','min:6','max:20'],
+            'confirm_password' => ['required','same:new_password']
+        ],
+        [
+            'new_password.required' => 'Mật khẩu mới không được để trống',
+            'new_password.min' => 'Mật khẩu mới phải lớn hơn 6',
+            'new_password.max' => 'Mật khẩu mới phải nhỏ hơn 20',
+            'confirm_password.required' => ' Xác nhận mật khẩu không được để trống',
+            'confirm_password.same' => ' Xác nhận mật khẩu phải bằng mật khẩu mới',
+        ]);
+
+        $user = User::model()->where('id',auth('admin')->user()->id)->first();
+        $user->password = Hash::make($request->confirm_password);
+        $user->save();
+        User::model()->where('id',auth('admin')->user()->id)->update([
+            'password' => Hash::make($request->confirm_password)
+        ]);
+        return redirect()->route('admin.login')->with(['type'=>'success','msg'=>'Thay đổi thành công. Vui lòng đăng nhập để sử dụng','title'=>'Thay đổi mật khẩu']);
+    }
 }
