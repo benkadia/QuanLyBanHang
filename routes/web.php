@@ -21,6 +21,7 @@
 */
 
 use App\Http\Controllers\backend\AuthController;
+use App\Http\Controllers\backend\CategoryController;
 use App\Http\Controllers\backend\ConfigController;
 use App\Http\Controllers\backend\ProductController2;
 use App\Http\Controllers\backend\RoleController;
@@ -97,6 +98,8 @@ Route::group(['prefix'=>'admin'],function(){
         Route::resource('users',UserController::class);
         //product
         Route::resource('products',ProductController2::class);
+        //Category Product
+        Route::resource('categories',CategoryController::class);
         //test
         Route::get('test',[testController::class,'index']);
         Route::get('test2',[testController::class,'index2']);

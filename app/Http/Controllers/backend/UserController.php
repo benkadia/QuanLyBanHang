@@ -44,7 +44,6 @@ class UserController extends Controller
     {
         $request->validate([
             'username' => ['required', 'string', 'max:50', 'min:5'],
-            'password' => ['required', 'min:6', 'max:20'],
             'name' => ['required', 'string', 'max:50', 'min:5'],
             'email' => ['required', 'max:20', 'min:2', 'email'],
             'phone' => ['required', 'numeric'],
@@ -109,7 +108,6 @@ class UserController extends Controller
             return redirect()->route('users.index')->with(['type' => 'danger', 'msg' => 'User không tồn tại', 'title' => 'Sửa User']);
         $request->validate([
             'username' => ['required', 'string', 'max:50', 'min:5'],
-            'password' => ['required', 'min:6', 'max:20'],
             'name' => ['required', 'string', 'max:50', 'min:5'],
             'email' => ['required', 'max:20', 'min:2', 'email'],
             'phone' => ['required', 'numeric'],
@@ -125,7 +123,6 @@ class UserController extends Controller
         ]);
         $item->name = $request->name;
         $item->username = $request->username;
-        $item->password = $request->password;
         $item->phone = $request->phone;
         $item->email = $request->email;
         $item->image = $request->image;
@@ -133,7 +130,6 @@ class UserController extends Controller
         User::where('id', $id)->update([
             "name" => $request->name,
             "username" => $request->username,
-            "password" => Hash::make($request->password),
             "phone" => $request->phone,
             "email" => $request->email,
             "image" => $request->image,

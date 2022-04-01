@@ -12,6 +12,10 @@ class Category extends Model
     {
         return $this->hasMany('App\Models\Product','category_id','id');
     }
+    public static function model()
+    {
+        return self::where(['status'=>1]);
+    }
     // public function getQtyAttribute()
     // {
     //     return $this->products->count()??0;
