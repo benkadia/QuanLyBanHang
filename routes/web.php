@@ -25,6 +25,7 @@ use App\Http\Controllers\backend\CategoryController;
 use App\Http\Controllers\backend\ConfigController;
 use App\Http\Controllers\backend\ProductController2;
 use App\Http\Controllers\backend\RoleController;
+use App\Http\Controllers\backend\SupplierController;
 use App\Http\Controllers\backend\testController;
 use App\Http\Controllers\backend\UserController;
 use App\Http\Controllers\frontend\ProductController;
@@ -100,6 +101,8 @@ Route::group(['prefix'=>'admin'],function(){
         Route::resource('products',ProductController2::class);
         //Category Product
         Route::resource('categories',CategoryController::class);
+        //Suppliers
+        Route::resource('suppliers',SupplierController::class);
         //test
         Route::get('test',[testController::class,'index']);
         Route::get('test2',[testController::class,'index2']);

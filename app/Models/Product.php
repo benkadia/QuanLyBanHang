@@ -17,6 +17,10 @@ class Product extends Model
     {
         return $this->hasOne('App\Models\Category','id','category_id');
     }
+    public function supplier()
+    {
+        return $this->hasOne('App\Models\Supplier','id','supplier_id');
+    }
     //add them thuoc tinh k co trong cot cua table
     public function getNameCatAttribute()
     {
