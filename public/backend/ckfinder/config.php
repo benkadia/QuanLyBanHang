@@ -61,7 +61,7 @@ Examples:
 
 ATTENTION: The trailing slash is required.
 */
-$baseUrl = '/lrvbanhang (3)/public/upload/';
+$baseUrl = '/QuanLyBanHang-1/public/upload/';
 
 /*
 $baseDir : the path to the local directory (in the server) which points to the
@@ -80,7 +80,7 @@ Examples:
 
 ATTENTION: The trailing slash is required.
 */
-$baseDir = 'C:/wamp64/www/lrvbanhang (3)/public/upload/'; //resolveUrl($baseUrl);
+$baseDir = 'C:/wamp64/www/QuanLyBanHang-1/public/upload/'; //resolveUrl($baseUrl);
 
 /*
  * ### Advanced Settings

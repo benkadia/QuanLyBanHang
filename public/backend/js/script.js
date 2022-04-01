@@ -3,7 +3,7 @@ function openfile(field) {
 }
 
 function SetFileField(fileUrl, id) {
-    fileUrl = fileUrl.replace('/lrvbanhang (3)/public', '');
+    fileUrl = fileUrl.replace('/QuanLyBanHang-1/public', '');
     $('#' + id).val(fileUrl);
     $('#' + id).parent().children('img').attr('src', PUBLIC + fileUrl);
 }
