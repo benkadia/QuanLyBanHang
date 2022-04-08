@@ -29,6 +29,8 @@ use App\Http\Controllers\backend\RoleController;
 use App\Http\Controllers\backend\SupplierController;
 use App\Http\Controllers\backend\testController;
 use App\Http\Controllers\backend\UserController;
+use App\Http\Controllers\frontend\CartController;
+use App\Http\Controllers\frontend\PageController;
 use App\Http\Controllers\frontend\ProductController;
 use Illuminate\Support\Facades\Route;
 
@@ -131,8 +133,24 @@ Route::group(['prefix' => 'admin'], function () {
     })->name('admin.403');
 });
 //route cua frontend
-Route::group([], function () {
-    //Route::get('old','frontend\ProductController@index');
+Route::group([],function(){
+    Route::get('/',[PageController::class,'index'])->name('f.home');
+    Route::get('/contact',[PageController::class,'contact'])->name('f.contact');
+    Route::get('/intro',[PageController::class,'intro'])->name('f.intro');
+    //product
+    Route::get('/{alias}-{id}',[ProductController::class,'detail'])
+    ->where('alias','^[a-zA-Z0-9-_]+')
+    ->where('id','^[0-9]+$')
+    ->name('p.detail');
+    Route::get('/cate/{alias}-{id}',[ProductController::class,'category'])
+    ->where('alias','^[a-zA-Z0-9-_]+')
+    ->where('id','^[0-9]+$')
+    ->name('p.listforcate');
+    //cart
+    Route::get('/cart',[CartController::class,'index'])->name('f.cart');
+    Route::post('/addtocart/{id}',[CartController::class,'addtocart'])->name('f.addtocart');
+    Route::post('/updatecart',[CartController::class,'updatecart'])->name('f.updatecart');
+    Route::get('/deleteitem/{id}',[CartController::class,'deleteitem'])->name('f.deleteitem');
 });
 Route::prefix('abc')->group(function () {
     Route::get('san-pham', [ProductController::class, 'index']);
