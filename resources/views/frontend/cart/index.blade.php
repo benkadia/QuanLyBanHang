@@ -29,18 +29,19 @@
         <div class="container">
             <div class="row">
                 <div class="col-12">
+                    @if($cart->isNotEmpty())
                     <form action="{{route('f.updatecart')}}" method="post">
                         @csrf
                         <div class="table-content table-responsive">
                             <table class="table">
                                 <thead>
                                     <tr>
-                                        <th class="product-thumbnail">Images</th>
-                                        <th class="cart-product-name">Product</th>
-                                        <th class="product-price">Unit Price</th>
-                                        <th class="product-quantity">Quantity</th>
-                                        <th class="product-subtotal">Total</th>
-                                        <th class="product-remove">Remove</th>
+                                        <th class="product-thumbnail">Hình</th>
+                                        <th class="cart-product-name">Sản phẩm</th>
+                                        <th class="product-price">Giá</th>
+                                        <th class="product-quantity">Số lượng</th>
+                                        <th class="product-subtotal">Thành tiền</th>
+                                        <th class="product-remove">Xóa</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -88,11 +89,15 @@
                                     <ul class="mb-20">
                                         <li>Tổng <span>{{number_format($cart->sum('totalamount'))}}</span></li>
                                     </ul>
-                                    <a class="btn-tp-2" href="checkout.html">Thanh toán</a>
+                                    <a class="btn-tp-2" href="{{route('f.checkout')}}">Thanh toán</a>
                                 </div>
                             </div>
                         </div>
                     </form>
+                    @else
+                    <div class="text-danger">Giỏ hàng trống</div>
+                    <a class="btn-tp-2" name="apply_coupon" type="submit" href="{{route('f.home')}}">Mua tiếp</a>
+                    @endif
                 </div>
             </div>
         </div>

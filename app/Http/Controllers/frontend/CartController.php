@@ -58,8 +58,4 @@ class CartController extends Controller
         session(['cart'=>$cart]);
         return redirect()->route('f.cart');
     }
-    public function checkout($alias,$id)
-    {
-
-    }
 }

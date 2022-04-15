@@ -30,6 +30,7 @@ use App\Http\Controllers\backend\SupplierController;
 use App\Http\Controllers\backend\testController;
 use App\Http\Controllers\backend\UserController;
 use App\Http\Controllers\frontend\CartController;
+use App\Http\Controllers\frontend\OrderController;
 use App\Http\Controllers\frontend\PageController;
 use App\Http\Controllers\frontend\ProductController;
 use Illuminate\Support\Facades\Route;
@@ -151,6 +152,10 @@ Route::group([],function(){
     Route::post('/addtocart/{id}',[CartController::class,'addtocart'])->name('f.addtocart');
     Route::post('/updatecart',[CartController::class,'updatecart'])->name('f.updatecart');
     Route::get('/deleteitem/{id}',[CartController::class,'deleteitem'])->name('f.deleteitem');
+     //order
+    Route::get('/checkout',[OrderController::class,'checkout'])->name('f.checkout');
+    Route::post('/checkout',[OrderController::class,'checkoutPost'])->name('f.checkoutpost');
+    Route::get('/finshed',[OrderController::class,'finshed'])->name('o.finshed');
 });
 Route::prefix('abc')->group(function () {
     Route::get('san-pham', [ProductController::class, 'index']);
